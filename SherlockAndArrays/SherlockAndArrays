@@ -1,0 +1,65 @@
+                                                             Sherlock and Array
+
+
+Watson gives Sherlock an array of integers. His challenge is to find an element of the array such that the sum of all elements to the left is equal to the sum of all elements to the right. For instance, given the array arr=[5,6,8,11],8 is between two subarrays that sum to 11. If your starting array is[1], that element satisfies the rule as left and right sum to 0.
+
+
+You will be given arrays of integers and must determine whether there is an element that meets the criterion.
+
+Function Description
+
+Complete the balancedSums function in the editor below. It should return a string, either YES if there is an element meeting the criterion or NO otherwise.
+
+balancedSums has the following parameter(s):
+
+    arr: an array of integers
+
+
+Input Format
+
+The first line contains T, the number of test cases.
+
+The next T pairs of lines each represent a test case.
+- The first line contains n, the number of elements in the array arr.
+- The second line contains n space-separated integers arr[i] where 0<=i<n .
+
+Solution:
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the balancedSums function below.
+def balancedSums(arr):
+    sum_arr = sum(arr)
+    starting_sum = 0
+    for i in range(len(arr)):
+        var = arr[i]
+        sum_arr-=var
+        if(starting_sum == sum_arr):
+            return "YES"
+        starting_sum+=var
+    return "NO"
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    T = int(input().strip())
+
+    for T_itr in range(T):
+        n = int(input().strip())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = balancedSums(arr)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
+ 
+
