@@ -1,0 +1,37 @@
+                                                           Full Counting Sort
+
+
+
+
+In this challenge you need to print the string that accompanies each integer in a list sorted by the integers. If two strings are associated with the same integer, they must be printed in their original order so your sorting algorithm should be stable. There is one other twist. The first half of the strings encountered in the inputs are to be replaced with the character ""
+
+.
+
+Insertion Sort and the simple version of Quicksort are stable, but the faster in-place version of Quicksort is not since it scrambles around elements while sorting.
+
+In this challenge, you will use counting sort to sort a list while keeping the order of the strings preserved.
+
+For example, if your inputs are
+you could set up a helper array with three empty arrays as elements. The following shows the insertions:
+
+
+
+
+
+Solution  
+
+
+
+n = int(input())
+
+ar = []
+for i in range(n):
+    if i < n//2:
+        numX, striX = input().strip().split()
+        ar.append((int(numX),'-'))
+    else:
+        numX,striX = input().strip().split()
+        ar.append((int(numX),striX))
+
+ar.sort(key=lambda tup: tup[0]) 
+print(*[x[1] for x in ar])
