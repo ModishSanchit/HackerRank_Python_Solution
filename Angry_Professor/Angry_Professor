@@ -1,0 +1,75 @@
+                                                           Angry Professor Problem Solution
+
+
+
+
+A Discrete Mathematics professor has a class of students. Frustrated with their lack of discipline, he decides to cancel class if fewer than some number of students are present when class starts. Arrival times go from on time (arrivalTime<=0) to arrived late (arrivalTime>0).
+
+Input Format
+
+The first line of input contains
+
+, the number of test cases.
+
+Each test case consists of two lines.
+
+The first line has two space-separated integers,
+and , the number of students (size of ) and the cancellation threshold.
+The second line contains space-separated integers (
+
+) describing the arrival times for each student.
+
+Note: Non-positive arrival times (
+) indicate the student arrived early or on time; positive arrival times () indicate the student arrived
+
+minutes late.
+
+For example, there are
+students who arrive at times . Four are there on time, and two arrive late. If there must be for class to go on, in this case the class will continue. If there must be , then class is cancelled. 
+
+
+
+Solution
+
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the angryProfessor function below.
+def angryProfessor(k, a):
+    count=0
+    a.sort()
+    for i in range(0,len(a)):
+        if a[i]<=0:
+            count=count+1
+    if count>=k:
+        return "NO"
+    else:
+        return "YES"
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        nk = input().split()
+
+        n = int(nk[0])
+
+        k = int(nk[1])
+
+        a = list(map(int, input().rstrip().split()))
+
+        result = angryProfessor(k, a)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
+
