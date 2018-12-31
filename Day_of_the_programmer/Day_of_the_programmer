@@ -1,0 +1,52 @@
+                                                                 Problem
+
+Marie invented a Time Machine and wants to test it by time-traveling to visit Russia on the Day of the Programmer (the 256 day of the year) during a year in the inclusive range from 1700 to 2700
+
+.
+
+From 1700 to 2700, Russia's official calendar was the Julian calendar; since 1919 they used the Gregorian calendar system. The transition from the Julian to Gregorian calendar system occurred in 1918, when the next day after January 31 was February 14. This means that in , February 14 was the 32 day of the year in Russia.
+
+In both calendar systems, February is the only month with a variable amount of days; it has
+days during a leap year, and 28 days during all other years. In the Julian calendar, leap years are divisible by 4 ; in the Gregorian calendar, leap years are either of the following:
+
+Divisible by 400.
+Divisible by 4 and not divisible by 100.
+
+Given a year y, find the date of the 256 day of that year according to the official Russian calendar during that year. Then print it in the format dd.mm.yyyy, where dd is the two-digit day, mm is the two-digit month, and yyyy is y.
+
+
+Solution
+
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the dayOfProgrammer function below.
+def dayOfProgrammer(year):
+    sum = 243
+    if year in range(1919, 2701):
+        if year % 400 == 0 or year % 4 == 0 and year % 100 != 0:
+                sum += 1
+    elif year in range(1700, 1918):         #julian
+        if year % 4 == 0:
+            sum += 1
+    else:                                   #year 1918
+        sum -= 13
+    date = 256 - sum
+    return "{0}.09.{1}".format(date, year)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    year = int(input().strip())
+
+    result = dayOfProgrammer(year)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
